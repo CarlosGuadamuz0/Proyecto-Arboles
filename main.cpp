@@ -1,14 +1,14 @@
 //
 // Created by vsj94 on 20/09/2022.
 //
-#include "Person.h"
+#include "Client.h"
 #include "BST.h"
 int main(){
 
     BST* prueba = new BST();
-    prueba->inserttxt();
-    system("pause");
-    return 0;
+
+
+
 
     int opc = 0;
 
