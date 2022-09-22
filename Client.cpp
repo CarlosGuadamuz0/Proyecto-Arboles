@@ -40,8 +40,7 @@ string Client::toString() {
     if(card = 3) tipo = "normal";
 
     stringstream ss;
-    ss << "nombre: "<< name<< "  ID: "<< id<< " Esta embarazada: "
-                                              ""<<pregnant<<" Es adulto Mayor: "<< oldMan<< " Esta con un nino: "<< withChild<< "  tipo de targeta"<<tipo;
+    ss << "nombre: "<< name<< "  ID: "<< id<< " Esta embarazada: "<<pregnant<<" Es adulto Mayor: "<< oldMan<< " Esta con un nino: "<< withChild<< " Tipo de targeta: "<< tipo <<endl;
     return ss.str();
 }
 int Client::returnkey() {

@@ -5,10 +5,10 @@
 #ifndef PROYECTOI_BST_H
 #define PROYECTOI_BST_H
 
-
 #include "Node.h"
 #include <fstream>
 #include "Client.h"
+
 class BST{
 private:
     Node* root;
@@ -23,14 +23,12 @@ public:
     Node* find(Node* nodo, Client* data);
 
     BST();
-    ~BST();
+    virtual ~BST();
     void insert(Client* data);
     void remove(Client* data);
-    void display();
     void search(Client* data);
-    void insertClient();
-
-};
+    void enviarR();
+    };
 
 
 
