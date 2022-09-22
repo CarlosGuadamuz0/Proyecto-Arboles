@@ -15,19 +15,19 @@ private:
 
 public:
     Node* makeEmpty(Node* nodo);
-    Node* insert1(Client* data, Node* nodo);
+    Node* insertN(Client* data, Node* nodo);
     Node* findeMin(Node* nodo);
     Node* findMax(Node* nodo);
-    Node* remove(Client* data, Node* nodo);
+    Node* removeN(Client* data, Node* nodo);
     void inorder(Node* nodo);
     Node* find(Node* nodo, Client* data);
 
     BST();
     ~BST();
-    void insert2(Client* data);
-    void remove(Client data);
+    void insert(Client* data);
+    void remove(Client* data);
     void display();
-    void search(Client data);
+    void search(Client* data);
     void insertClient();
 
 };

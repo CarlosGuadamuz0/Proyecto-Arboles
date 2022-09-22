@@ -7,9 +7,9 @@ BST::BST() {root = nullptr;}
 
 BST::~BST() {root = makeEmpty(root);}
 
-void BST::insert2(Client* data) {root = insert1(data, root);}
+void BST::insert(Client* data) {root = insertN(data, root);}
 
-void BST::remove(Client* data) {root = remove(data, root);}
+void BST::remove(Client* data) {root = removeN(data, root);}
 
 void BST::display() {inorder(root);cout << endl;}
 
@@ -27,15 +27,15 @@ Node* BST::makeEmpty(Node* node) {
     }
 }
 
-Node* BST::insert1(Client* data, Node* node) {
+Node* BST::insertN(Client* data, Node* node) {
     if (node == nullptr) {
         node = new Node(data,data->returnkey());
     }
-    else if (data->getId() < node->getData().getId()) {
-        node->setLeft(insert1(data, node->getLeft()));
+    else if (data->getId() < node->getData()->getId()) {
+        node->setLeft(insertN(data, node->getLeft()));
     }
-    else if (data->getId() > node->getData().getId()) {
-        node->setRight(insert1(data,node->getRight()));
+    else if (data->getId() > node->getData()->getId()) {
+        node->setRight(insertN(data,node->getRight()));
     }
     return node;
 }
@@ -64,21 +64,21 @@ Node* BST::findMax(Node* node) {
 }
 
 
-Node* BST::remove(Client* data, Node* node) { //x = data  node = t
+Node* BST::removeN(Client* data, Node* node) {
     Node* temp;
     if (node == nullptr) {
         return nullptr;
     }
     else if (data->getId() < node->getData()->getId()) {
-        node->setLeft(remove(data, node->getLeft()));
+        node->setLeft(removeN(data, node->getLeft()));
     }
     else if (data->getId() > node->getData()->getId()) {
-        node->setRight(remove(data, node->getRight()));
+        node->setRight(removeN(data, node->getRight()));
     }
     else if (node->getLeft() && node->getRight()) {  // a ambos lados nodos
         temp = findeMin(node->getRight());
         node->setData(temp->getData());
-        node->setRight(remove(node->getData(), node->getRight()));
+        node->setRight(removeN(node->getData(), node->getRight()));
 
     }
     else {
@@ -99,7 +99,7 @@ void BST::inorder(Node* node) {
         return;
     }
     inorder(node->getLeft());
-    cout << node->getData().getId() << " ";
+    cout << node->getData()->getId() << " ";
     inorder(node->getRight());
 }
 
