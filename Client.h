@@ -20,7 +20,7 @@ private:
 
 public:
     Client();
-    Client(string, long long, bool, bool, bool, int);
+    Client(string,long long, bool, bool, bool, int);
     ~Client();
 
     string getName();
@@ -29,10 +29,8 @@ public:
     bool getoldMan();
     bool getwithChild();
     int getCard();
-
-
     void setName(string);
-    void setId(long long);
+    void setId( long long);
     void setPregnant(bool);
     void setoldMan(bool);
     void setwithChild(bool);

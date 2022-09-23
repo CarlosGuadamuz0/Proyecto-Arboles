@@ -5,7 +5,12 @@ BST::BST() {root = nullptr;  }
 
  BST::~BST() {root = makeEmpty(root);}
 
-void BST::insert(Client* data) { insertN(data, root);}
+void BST::insert(Client* data) {
+    if (root== nullptr)
+        root=insertN(data, root);
+    else
+        insertN(data,root);
+}
 
 void BST::remove(Client* data) {root = removeN(data, root);}
 
@@ -29,14 +34,14 @@ void BST::enviarR() {
 }
 
 Node* BST::insertN(Client* data, Node* node) {
-    if (node == nullptr) {
+
+    if (node == nullptr)
         node = new Node(data,data->returnkey());
-    }
-    else if (data->getId() < node->getData()->getId()) {
+
+    if (data->getId() < node->getData()->getId()) {
         node->setLeft(insertN(data, node->getLeft()));
-    }
-    else if (data->getId() > node->getData()->getId()) {
-        node->setRight(insertN(data,node->getRight()));
+    }  if (data->getId() > node->getData()->getId()) {
+        node->setRight(insertN(data, node->getRight()));
     }
     return node;
 }
@@ -96,7 +101,7 @@ Node* BST::removeN(Client* data, Node* node) {
 
 void BST::inorder(Node* node) {
     if (node == nullptr) {
-        cout<<"Vacio";
+
     }
     else{
     inorder(node->getLeft());

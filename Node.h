@@ -15,7 +15,7 @@ private:
     Node* left;
     Node* right;
 public:
-    Node(Client* data, int key, Node* left = nullptr, Node* right = nullptr);
+    Node(Client* data=nullptr, int key=-1, Node* left = nullptr, Node* right = nullptr);
     ~Node();
     Client* getData()const;
     void setData(Client* data);
@@ -23,6 +23,10 @@ public:
     void setLeft(Node* left);
     Node* getRight()const;
     void setRight(Node* right);
+
+    int getKey() const;
+
+    void setKey(int key);
 };
 
 

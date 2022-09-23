@@ -4,16 +4,16 @@
 
 #include "Node.h"
 
-Node::~Node() {
-
-}
-
 Node::Node(Client *data,int key, Node* left, Node* right) {
 
     this->key = key;
     this->data = data;
     this->left = left;
     this->right = right;
+}
+
+Node::~Node() {
+
 }
 
 Client* Node::getData()const {
@@ -35,4 +35,12 @@ Node* Node::getRight()const {
 }
 void Node::setRight(Node* right) {
     this->right = right;
+}
+
+int Node::getKey() const {
+    return key;
+}
+
+void Node::setKey(int key) {
+    Node::key = key;
 }
