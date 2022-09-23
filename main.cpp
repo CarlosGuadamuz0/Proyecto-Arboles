@@ -8,12 +8,14 @@ using namespace std;
 int main(){
 
     Cargar c1;
-//    BST* b1=c1.cargar();
-//    b1->enviarR();
-Client* cl1= new Client("Carlos",1,true,false,false,2);
-BST* b1= new BST();
-b1->insert(cl1);
-b1->enviarR();
+    BST* b1=c1.cargar();
+//    c1.leer();
+    b1->enviarR();
+//Client* cl1= new Client("Carlos",1,true,false,false,2);
+//
+//BST* b1= new BST();
+//b1->insert(cl1);
+//b1->enviarR();
     return 0;
 
 

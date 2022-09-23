@@ -27,7 +27,7 @@ bool Client::getwithChild(){return withChild;}
 int Client::getCard(){return card;}
 
 void Client::setName(string n){Client::name = n;}
-void Client::setId( long long i){Client::id = i;}
+void Client::setId(  long long i){Client::id = i;}
 void Client::setPregnant(bool p){Client::pregnant = p;}
 void Client::setoldMan(bool o){Client::oldMan = o;}
 void Client::setwithChild(bool w){Client::withChild = w;}
@@ -40,7 +40,7 @@ string Client::toString() {
     if(card = 3) tipo = "normal";
 
     stringstream ss;
-    ss << "nombre: "<< name<< "  ID: "<< id<< " Esta embarazada: "<<pregnant<<" Es adulto Mayor: "<< oldMan<< " Esta con un nino: "<< withChild<< " Tipo de targeta: "<< tipo <<endl;
+    ss << "nombre: "<< name<< "  ID: "<< to_string(getId())<< " Esta embarazada: "<<pregnant<<" Es adulto Mayor: "<< oldMan<< " Esta con un nino: "<< withChild<< " Tipo de targeta: "<< tipo <<endl;
     return ss.str();
 }
 int Client::returnkey() {
