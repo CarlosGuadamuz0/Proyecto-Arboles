@@ -4,12 +4,14 @@
 
 #include "Node.h"
 
-Node::Node(Client *data,int key, Node* left, Node* right) {
+Node::Node(Client *data,long long key, Node* left, Node* right,int pos,Node*parent) {
 
     this->key = key;
     this->data = data;
     this->left = left;
     this->right = right;
+    this->pos=pos;
+    this->parent=parent;
 }
 
 Node::~Node() {
@@ -37,10 +39,39 @@ void Node::setRight(Node* right) {
     this->right = right;
 }
 
-int Node::getKey() const {
+long long Node::getKey() const {
     return key;
 }
 
-void Node::setKey(int key) {
+void Node::setKey(long long key) {
     Node::key = key;
+}
+
+bool Node::hasLeafs() {
+    if(getRight()&&getLeft()){
+        return true;
+    }
+    else
+        return false;
+
+}
+
+int Node::getPos() const {
+    return pos;
+}
+
+void Node::setPos(int pos) {
+    Node::pos = pos;
+}
+
+
+
+
+
+Node *Node::getParent() const {
+    return parent;
+}
+
+void Node::setParent(Node *parent) {
+    Node::parent = parent;
 }

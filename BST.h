@@ -12,7 +12,8 @@
 class BST{
 private:
     Node* root;
-
+    Node* last;
+    int size;
 public:
     BST();
     virtual ~BST();
@@ -27,7 +28,16 @@ public:
     void remove(Client* data);
     void search(Client* data);
     void enviarR();
-    };
+    Node* insertH(Client* data);
+    void swapRight(Node* son, Node* parent);
+    void swapLeft(Node* son, Node* parent);
+    void insertLast(Client* data);
+    Node* getPos(int pos);
+    int getSize() const;
+    void swap(Node* t);
+    void setSize(int size);
+
+};
 
 
 

@@ -10,6 +10,7 @@ public:
     Cargar();
     ~Cargar();
     BST* cargar();
+    BST* cargarH();
     void leer();
 };
 

@@ -3,12 +3,21 @@
 //
 #include <iostream>
 #include "CargarTxt/Cargar.h"
+#include "toBinary.h"
 
 using namespace std;
 int main(){
+    toBinary t1;
+
+    cout<<t1.convert(1)<<endl;
+    cout<<t1.convert(2)<<endl;
+    cout<<t1.convert(3)<<endl;
+    cout<<t1.convert(4)<<endl;
+    cout<<t1.convert(5)<<endl;
 
     Cargar c1;
-    BST* b1=c1.cargar();
+    BST* b1=c1.cargarH();
+
 //    c1.leer();
     b1->enviarR();
 //Client* cl1= new Client("Carlos",1,true,false,false,2);

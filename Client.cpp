@@ -35,12 +35,12 @@ void Client::setCard(int c){Client::card = c;}
 
 string Client::toString() {
     string tipo = "";
-    if(card = 1) tipo = "premium";
-    if(card = 2) tipo = "oro";
-    if(card = 3) tipo = "normal";
+    if(card == 1) tipo = "premium";
+    if(card ==2) tipo = "oro";
+    if(card == 3) tipo = "normal";
 
     stringstream ss;
-    ss << "nombre: "<< name<< "  ID: "<< to_string(getId())<< " Esta embarazada: "<<pregnant<<" Es adulto Mayor: "<< oldMan<< " Esta con un nino: "<< withChild<< " Tipo de targeta: "<< tipo <<endl;
+    ss << "Prioridad: " <<returnkey()<<" nombre: "<< name<< "  ID: "<< to_string(getId())<< " Esta embarazada: "<<pregnant<<" Es adulto Mayor: "<< oldMan<< " Esta con un nino: "<< withChild<< " Tipo de targeta: "<< tipo <<endl;
     return ss.str();
 }
 int Client::returnkey() {
@@ -51,9 +51,9 @@ int Client::returnkey() {
         data += 20;
     if(oldMan)
         data += 35;
-    if(card = 1)
+    if(card == 1)
         data += 20;
-    if(card = 2)
+    if(card == 2)
         data += 10;
     return data;
 }

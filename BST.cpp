@@ -1,9 +1,14 @@
 
 #include "BST.h"
+#include "toBinary.h"
 
-BST::BST() {root = nullptr;  }
+BST::BST() {root = nullptr;
+    last= nullptr;
+    size=0;}
 
- BST::~BST() {root = makeEmpty(root);}
+BST::~BST() {
+    makeEmpty(root);
+}
 
 void BST::insert(Client* data) {
     if (root== nullptr)
@@ -35,14 +40,18 @@ void BST::enviarR() {
 
 Node* BST::insertN(Client* data, Node* node) {
 
-    if (node == nullptr)
-        node = new Node(data,data->returnkey());
+    if (node == nullptr){
+        size++;
+        node = new Node(data,data->getId());
+    }
 
     if (data->getId() < node->getData()->getId()) {
         node->setLeft(insertN(data, node->getLeft()));
-    }  if (data->getId() > node->getData()->getId()) {
+    }
+    if(data->getId() > node->getData()->getId()){
         node->setRight(insertN(data, node->getRight()));
     }
+
     return node;
 }
 
@@ -104,10 +113,11 @@ void BST::inorder(Node* node) {
 
     }
     else{
-    inorder(node->getLeft());
-    cout << node->getData()->toString() << " ";
-    inorder(node->getRight());
-        }
+        cout << node->getData()->toString() << " ";
+        inorder(node->getLeft());
+//        cout << size << " \n";
+        inorder(node->getRight());
+    }
 }
 
 
@@ -126,6 +136,141 @@ Node* BST::find(Node* node, Client *data) {
     }
 }
 
+Node *BST::insertH(Client *data){
+    if(root==nullptr){
+        root= new Node(data,data->returnkey());
+        root->setPos(size++);
+    }else{
+        toBinary t1;
+        Node *temp;
+        int tsize=size+1;
+        string moves=t1.convert(tsize);
+
+        char lastmove=moves[moves.size()-1];
+
+        temp= getPos(tsize);
+        Node* newNode= new Node(data,data->returnkey(),nullptr, nullptr,tsize,temp);
+        if(lastmove=='0'){
+            temp->setLeft(newNode);
+
+            size++;
+            swap(temp->getLeft());
+        }
+        else if(lastmove=='1'){
+            temp->setRight(newNode);
+
+            size++;
+            swap(temp->getRight());
+        }
+
+
+    }
+
+
+
+
+}
+
+void BST::insertLast(Client* data) {
+    if(root== nullptr){
+        root=insertH(data);
+    }
+    else
+        insertH(data);
+}
+
+int BST::getSize() const {
+    return size;
+}
+
+void BST::setSize(int size) {
+    BST::size = size;
+}
+
+Node *BST::getPos(int sizet) {
+    toBinary t1;
+    Node* temp = root;
+    string moves=t1.convert(sizet).erase(0,1);
+    moves.erase(moves.size()-1);
+    while(!moves.empty()){
+        if(moves[0]=='0'&&temp->getLeft()){
+            temp=temp->getLeft();
+            moves.erase(0,1);
+        }
+        else if(moves[0]=='1'&&temp->getRight()){
+            temp=temp->getRight();
+            moves.erase(0,1);
+        }
+        else{moves.erase(0,1);}
+
+
+    }
+    return temp;
+}
+
+void BST::swap(Node* t) {
+    Node* temp=t;
+    Node* tempP=t->getParent();
+    while(tempP->getParent()!= nullptr){
+        if(tempP->getLeft()==temp&&temp->getKey()>tempP->getKey()){
+            Node* pParent=tempP->getParent();
+            if(pParent->getLeft()==tempP){
+                pParent->setLeft(temp);
+            }else{
+                pParent->setRight(temp);
+            }
+            swapLeft(temp,tempP);
+
+        }
+        else if(tempP->getRight()==temp&&temp->getKey()>tempP->getKey()){
+            Node* pParent=tempP->getParent();
+            if(pParent->getLeft()==tempP){
+                pParent->setLeft(temp);
+            }else{
+                pParent->setRight(temp);
+            }
+            swapRight(temp,tempP);
+        }
+
+else{
+    temp=temp->getParent();
+}
+            tempP=temp->getParent();
+    }
+
+    if(tempP->getParent()== nullptr){
+        if(tempP->getLeft()==temp&&temp->getKey()>tempP->getKey()){
+            swapLeft(temp,tempP);
+        }
+        else if(tempP->getRight()==temp&&temp->getKey()>tempP->getKey()){
+            swapRight(temp,tempP);
+        }
+    }
+
+
+
+}
+
+void BST::swapRight(Node *son, Node *parent) {
+    Node* left=parent->getLeft();
+    parent->setLeft(son->getLeft());
+    parent->setRight(son->getRight());
+    son->setRight(parent);
+    son->setLeft(left);
+    son->setParent(parent->getParent());
+    parent->setParent(son);
+
+}
+
+void BST::swapLeft(Node *son, Node *parent) {
+    Node* right=parent->getRight();
+    parent->setLeft(son->getLeft());
+    parent->setRight(son->getRight());
+    son->setRight(right);
+    son->setLeft(parent);
+    son->setParent(parent->getParent());
+    parent->setParent(son);
+}
 
 /*void BST::insertClient() {
 

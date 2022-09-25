@@ -10,12 +10,14 @@
 using namespace std;
 class Node {
 private:
-    int key;
+    long long key;
     Client* data;
     Node* left;
     Node* right;
+    Node* parent;
+    int pos;
 public:
-    Node(Client* data=nullptr, int key=-1, Node* left = nullptr, Node* right = nullptr);
+    Node(Client* data=nullptr, long long key=-1, Node* left = nullptr, Node* right = nullptr,int pos=1,Node* parent= nullptr);
     ~Node();
     Client* getData()const;
     void setData(Client* data);
@@ -23,10 +25,23 @@ public:
     void setLeft(Node* left);
     Node* getRight()const;
     void setRight(Node* right);
+    bool hasLeafs();
+    long long getKey() const;
 
-    int getKey() const;
+    int getHeapkey() const;
 
-    void setKey(int key);
+    void setHeapkey(int heapkey);
+
+    Node *getParent() const;
+
+    void setParent(Node *parent);
+
+    int getPos() const;
+
+    void setPos(int pos);
+
+    void setKey(long long key);
+
 };
 
 
