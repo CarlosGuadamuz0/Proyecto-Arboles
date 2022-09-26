@@ -114,8 +114,7 @@ void BST::inorder(Node* node) {
     }
     else{
         cout << node->getData()->toString() << " ";
-        inorder(node->getLeft());
-//        cout << size << " \n";
+        //inorder(node->getLeft());
         inorder(node->getRight());
     }
 }
@@ -202,8 +201,6 @@ Node *BST::getPos(int sizet) {
             moves.erase(0,1);
         }
         else{moves.erase(0,1);}
-
-
     }
     return temp;
 }
@@ -263,13 +260,16 @@ void BST::swapRight(Node *son, Node *parent) {
 }
 
 void BST::swapLeft(Node *son, Node *parent) {
+
     Node* right=parent->getRight();
+
     parent->setLeft(son->getLeft());
     parent->setRight(son->getRight());
     son->setRight(right);
     son->setLeft(parent);
     son->setParent(parent->getParent());
     parent->setParent(son);
+
 }
 
 /*void BST::insertClient() {
